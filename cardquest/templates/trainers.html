@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css'%} " />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <title>Pokemon | Trainers</title>
+  </head>
+  <body>
+    <!--NAVBAR-->
+    <section class="navbar">
+      <a href="{% url 'home' %}" class="btn"> Home </a>
+      <a href="{% url 'trainer-list' %}" class="btn"> Trainer </a>
+      <a href="{% url 'pokemon-cards' %}" class="btn"> Pokemon Card </a>
+      <a href="{% url 'collection' %}" class="btn"> Collection </a>
+    </section>
+
+    <!--TRAINERS-->
+    <main>
+        {% block content %}
+        <a href="{% url 'trainer-add' %}" class="btn btn-outline-primary">Add New
+          Trainer</a><br>
+          
+        <section class="trainers-container">
+            <table class="styled-table">
+              <tbody>
+                <tr>
+                    <th>Trainer Name</th>
+                    <th>Birthdate</th>
+                    <th>Location</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                {% for object in object_list %}
+                <!--ASH-->
+                  <td>{{ object.name }}</td>
+                  <td>{{ object.birthdate }}</td>
+                  <td>{{ object.location }}</td>
+                  <td>{{ object.email}} </td>
+                  <td>
+                    <a href="trainer_list/{{ object.id }}" >Edit</a> |
+                    <a href="trainer_list/{{ object.id }}/delete" >Delete</a>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+              </tbody>
+            </table>
+        </section>
+          {% include 'includes/pagination.html' %}
+    </main>
+    {% endblock %}
+    {% include 'includes/footer.html' %}
+  </body>
+</html>
+
