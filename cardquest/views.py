@@ -48,7 +48,7 @@ class PokemonCardListView(ListView):
     model = PokemonCard
     context_object_name = 'pokemoncard'
     template_name = 'pokemoncard.html'
-    paginate_by = 6
+    paginate_by = 5
     json_file_path = 'projectsite\data\pokemon_data.json'
 
     def get_context_data(self, **kwargs):
